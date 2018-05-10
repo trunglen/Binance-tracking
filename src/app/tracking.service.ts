@@ -61,5 +61,5 @@ export interface VolumeTrackingTransform{
     btc_volume: number
     volume: number
     btc_buy_volume: number
-    percent: number
+    percent: string
 }
