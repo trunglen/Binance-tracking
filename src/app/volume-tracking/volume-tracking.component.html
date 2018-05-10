@@ -1,0 +1,78 @@
+<div class="panel panel-primary">
+  <div class="panel-heading">
+    <h2 class="panel-title">Binance volume tracking</h2>
+  </div>
+  <div class="panel-body">
+
+    <form action="" method="POST" class="form-inline" role="form">
+
+      <div class="form-group">
+        <label class="sr-only" for="">Coin</label>
+        <input type="text" class="form-control" id="" placeholder="Coin" (keyup)="onFilter('coin', c.value)" #c>
+      </div>
+      <div class="form-group">
+        <label class="sr-only" for="">label</label>
+        <input type="text" class="form-control" id="" placeholder="Min volume" (keyup)="onFilter('min', min.value)" #min>
+      </div>
+      <div class="form-group">
+        <label class="sr-only" for="">label</label>
+        <input type="text" class="form-control" id="" placeholder="Max volume" (keyup)="onFilter('max', max.value)" #max>
+      </div>
+    </form>
+
+    <table class="table table-responsive">
+      <thead>
+        <tr>
+          <th>Time</th>
+          <th>Symbols</th>
+          <th>Price</th>
+          <th>Buy Volume</th>
+          <th>Volume</th>
+          <th>BTC Volume</th>
+          <th>BTC Buy Volume</th>
+          <th>%</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let s of volumeTrackingTransforms |volumeFilter:condition | paginate: { itemsPerPage: 10, currentPage: p }">
+          <td>
+            {{s.start_time}}
+            <br/>
+            <span>~</span>
+            <br/> {{s.end_time}}
+          </td>
+          <td>
+            {{s.symbol}}
+          </td>
+          <td>
+            <span class="label label-info">Open</span>: {{s.price.open}}
+            <br/>
+            <span class="label label-default">Close</span>: {{s.price.close}}
+            <br/>
+            <span class="label label-success">High </span>: {{s.price.high}}
+            <br/>
+            <span class="label label-danger">Low</span>: {{s.price.low}}
+          </td>
+          <td>
+            {{s.volume}}
+          </td>
+          <td>
+            {{s.buy_volume}}
+          </td>
+          <td>
+            {{s.btc_volume}}
+          </td>
+          <td>
+            {{s.btc_buy_volume}}
+          </td>
+          <td>
+            {{s.percent}}
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="row text-center">
+      <pagination-controls (pageChange)="p = $event"></pagination-controls>
+    </div>
+  </div>
+</div>
