@@ -26,7 +26,7 @@ export class HttpService {
     // })
     Post<T>(url: string, body: any) {
         this.spinnerService.show();
-        return this.http.post(url, body,{headers:new HttpHeaders({'Content-Type':'text/plain','Access-Control-Allow-Origin':'*'})}).finally(() => { this.spinnerService.hide() });
+        return this.http.post(url, body,{headers:new HttpHeaders({'Content-Type':'text/plain'})}).finally(() => { this.spinnerService.hide() });
     }
 }
 

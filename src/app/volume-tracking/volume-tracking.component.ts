@@ -19,7 +19,6 @@ export class VolumeTrackingComponent implements OnInit {
     this.trackingService.getVolumeTracking().subscribe(res => {
       this.volumeTrackings = <VolumeTracking[]>res
       let transform1 = _.groupBy(res, 'symbol')
-      console.log(transform1)
       _.each(transform1, (v, k) => {
         const temp = <VolumeTracking[]>v
         let open = 0, close = 0, high = 0, low = 0, volume = 0, buy_volume = 0, btc_volume = 0, btc_buy_volume = 0, ratio = 0

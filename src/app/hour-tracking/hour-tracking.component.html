@@ -1,3 +1,35 @@
-<p>
-  hour-tracking works!
-</p>
+<div class="panel panel-primary">
+  <div class="panel-heading">
+    <h2 class="panel-title">Binance volume tracking</h2>
+  </div>
+  <div class="panel-body">
+    <div class="row">
+      <div class="col-md-3" *ngFor="let h of hourTrackings">
+        <div class="panel panel-primary">
+          <div class="panel-heading">{{h.hourStart}}h - {{h.hourEnd}}h</div>
+          <div class="panel-body">
+            <table border="0" style="width: 100%;">
+              <tr>
+                <td>Buy Volume:</td>
+                <td style="text-align: right;">{{h.volume}}</td>
+              </tr>
+              <tr>
+                <td>Volume:</td>
+                <td style="text-align: right;">{{h.buyVolume}}</td>
+              </tr>
+              <tr>
+                <td>BTC Buy Volume:</td>
+                <td style="text-align: right;">{{h.btc_buy_volume}}</td>
+              </tr>
+              <tr>
+                <td>BTC Volume:</td>
+                <td style="text-align: right;">{{h.btc_volume}}</td>
+              </tr>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>

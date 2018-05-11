@@ -21,6 +21,7 @@ export class SpinnerComponent implements OnInit {
   ngOnInit() {
     this.spinnerStateChanged = this.spinnerService.spinnerState
       .subscribe((state: SpinnerState) => {
+        console.log(state)
         this.visible = state.show;
       });
   }

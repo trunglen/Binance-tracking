@@ -9,7 +9,6 @@ export class VolumeFilterPipe implements PipeTransform {
 
   transform(value: VolumeTrackingTransform[], args?: { target: string, filter: string }): any {
     if (args.target === 'coin') {
-      console.log(args)
       return value.filter(c => {
         return c.symbol.toUpperCase().includes(args.filter.toUpperCase())
       })
