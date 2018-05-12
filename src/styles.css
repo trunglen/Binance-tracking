@@ -3,6 +3,9 @@
 Code snippet by maridlcrmn for Bootsnipp.com
 Follow me on Twitter @maridlcrmn
 */
+@import "~primeng/resources/themes/bootstrap/theme.css";
+@import "~primeng/resources/primeng.min.css";
+@import "~font-awesome/css/font-awesome.min.css";
 
 .navbar-brand { position: relative; z-index: 2; }
 

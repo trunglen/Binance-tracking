@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
@@ -13,6 +13,10 @@ import { HttpService } from '../x/http/http.service';
 import { HttpClientModule } from '@angular/common/http';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { VolumeFilterPipe } from './volume-filter.pipe';
+import { OrderModule } from 'ngx-order-pipe';
+import { StatisticsComponent } from './statistics/statistics.component';
+import { CalendarModule } from 'primeng/calendar';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -20,14 +24,19 @@ import { VolumeFilterPipe } from './volume-filter.pipe';
     VolumeTrackingComponent,
     VolumeTrackingDetailComponent,
     HourTrackingComponent,
-    VolumeFilterPipe
+    VolumeFilterPipe,
+    StatisticsComponent,
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
+    FormsModule,
+    OrderModule,
     CoreModule,
     AppRoutingModule,
     HttpClientModule,
-    NgxPaginationModule
+    NgxPaginationModule,
+    CalendarModule
   ],
   providers: [
     HttpService,

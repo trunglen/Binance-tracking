@@ -34,12 +34,12 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let s of volumeTrackingTransforms |volumeFilter:condition | paginate: { itemsPerPage: 10, currentPage: p }">
+        <tr *ngFor="let s of volumeTrackings |volumeFilter:condition | paginate: { itemsPerPage: 10, currentPage: p } | orderBy: order">
           <td>
-            {{s.start_time}}
+            {{s.startTimeDisplay}}
             <br/>
             <span>~</span>
-            <br/> {{s.end_time}}
+            <br/> {{s.closeTimeDisplay}}
           </td>
           <td>
            <a [routerLink]="['detail/'+s.symbol]">
@@ -47,28 +47,28 @@
             </a>
           </td>
           <td>
-            <span class="label label-info">Open</span>: {{s.price.open}}
+            <span class="label label-info">Open</span>: {{s.open}}
             <br/>
-            <span class="label label-default">Close</span>: {{s.price.close}}
+            <span class="label label-default">Close</span>: {{s.close}}
             <br/>
-            <span class="label label-success">High </span>: {{s.price.high}}
+            <span class="label label-success">High </span>: {{s.high}}
             <br/>
-            <span class="label label-danger">Low</span>: {{s.price.low}}
+            <span class="label label-danger">Low</span>: {{s.low}}
           </td>
           <td>
             {{s.volume}}
           </td>
           <td>
-            {{s.buy_volume}}
+            {{s.buyVolume}}
           </td>
           <td>
-            {{s.btc_volume}}
+            {{s.quoteVolume}}
           </td>
           <td>
-            {{s.btc_buy_volume}}
+            {{s.quoteBuyVolume}}
           </td>
           <td>
-            {{s.percent}}
+            {{s.ratio*100}} %
           </td>
         </tr>
       </tbody>

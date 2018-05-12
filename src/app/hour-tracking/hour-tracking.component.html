@@ -4,6 +4,18 @@
   </div>
   <div class="panel-body">
     <div class="row">
+        <div id="tradingview_f357f"></div>
+      <!-- TradingView Widget BEGIN -->
+      <div class="tradingview-widget-container">
+          <div id="tradingview_f357f" [innerHTML]="htmlSnippet|safe:'html'"></div>
+          <div class="tradingview-widget-copyright">
+            <a href="https://vn.tradingview.com/symbols/BINANCE-BTGBTC/" rel="noopener" target="_blank">
+              <span class="blue-text">Symbol chart</span>
+            </a> by TradingView</div>
+        </div>
+      <!-- TradingView Widget END -->
+    </div>
+    <div class="row">
       <div class="col-md-3" *ngFor="let h of hourTrackings">
         <div class="panel panel-primary">
           <div class="panel-heading">{{h.hourStart}}h - {{h.hourEnd}}h</div>
