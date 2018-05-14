@@ -36,7 +36,7 @@ import { FormsModule } from '@angular/forms';
     AppRoutingModule,
     HttpClientModule,
     NgxPaginationModule,
-    CalendarModule
+    CalendarModule,
   ],
   providers: [
     HttpService,

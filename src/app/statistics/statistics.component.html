@@ -12,7 +12,7 @@
       </div>
       <div class="form-group">
         <label class="sr-only" for="">label</label>
-          <p-calendar [(ngModel)]="startTime" placeholder="Start time" name="start_time" (onSelect)="onFilter('start_time', startTime)"></p-calendar>
+        <p-calendar [(ngModel)]="startTime" placeholder="Start time" name="start_time" (onSelect)="onFilter('start_time', startTime)"></p-calendar>
       </div>
       <div class="form-group">
         <label class="sr-only" for="">label</label>
@@ -34,50 +34,58 @@
           <th>Time</th>
           <th>Symbols</th>
           <th>Price</th>
-          <th>Buy Volume</th>
-          <th>Volume</th>
-          <th>BTC Volume</th>
-          <th>BTC Buy Volume</th>
+          <th (click)="setOrder('volume')"  [class.active]="order === 'volume'">
+            <span [hidden]="reverse">▼</span>
+            <span [hidden]="!reverse">▲</span>Volume</th>
+          <th (click)="setOrder('buyVolume')" [class.active]="order === 'buyVolume'">
+            <span [hidden]="reverse">▼</span>
+            <span [hidden]="!reverse">▲</span>Buy Volume</th>
+          <th (click)="setOrder('quoteVolume')" [class.active]="order === 'quoteVolume'">
+            <span [hidden]="reverse">▼</span>
+            <span [hidden]="!reverse">▲</span>BTC Volume</th>
+          <th (click)="setOrder('quoteBuyVolume')" [class.active]="order === 'quoteBuyVolume'">
+            <span [hidden]="reverse">▼</span>
+            <span [hidden]="!reverse">▲</span>BTC Buy Volume</th>
           <th>%</th>
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let s of volumeTrackings |volumeFilter:condition | paginate: { itemsPerPage: 10, currentPage: p } | orderBy: order">
-            <td>
-                {{s.startTimeDisplay}}
-                <br/>
-                <span>~</span>
-                <br/> {{s.closeTimeDisplay}}
-              </td>
-              <td>
-               <a [routerLink]="['/detail/'+s.symbol]">
-                {{s.symbol}} 
-                </a>
-              </td>
-              <td>
-                <span class="label label-info">Open</span>: {{s.open}}
-                <br/>
-                <span class="label label-default">Close</span>: {{s.close}}
-                <br/>
-                <span class="label label-success">High </span>: {{s.high}}
-                <br/>
-                <span class="label label-danger">Low</span>: {{s.low}}
-              </td>
-              <td>
-                {{s.volume}}
-              </td>
-              <td>
-                {{s.buyVolume}}
-              </td>
-              <td>
-                {{s.quoteVolume}}
-              </td>
-              <td>
-                {{s.quoteBuyVolume}}
-              </td>
-              <td>
-                {{s.ratio*100}} %
-              </td>
+        <tr *ngFor="let s of volumeTrackings| orderBy: order : reverse:'case-insensitive':customComparator |volumeFilter:condition | paginate: { itemsPerPage: 10, currentPage: p } ">
+          <td>
+            {{s.startTimeDisplay}}
+            <br/>
+            <span>~</span>
+            <br/> {{s.closeTimeDisplay}}
+          </td>
+          <td>
+            <a [routerLink]="['/detail/'+s.symbol]">
+              {{s.symbol}}
+            </a>
+          </td>
+          <td>
+            <span class="label label-info">Open</span>: {{s.open}}
+            <br/>
+            <span class="label label-default">Close</span>: {{s.close}}
+            <br/>
+            <span class="label label-success">High </span>: {{s.high}}
+            <br/>
+            <span class="label label-danger">Low</span>: {{s.low}}
+          </td>
+          <td>
+            {{s.volume}}
+          </td>
+          <td>
+            {{s.buyVolume}}
+          </td>
+          <td>
+            {{s.quoteVolume}}
+          </td>
+          <td>
+            {{s.quoteBuyVolume}}
+          </td>
+          <td>
+            {{s.ratio*100}} %
+          </td>
         </tr>
       </tbody>
     </table>

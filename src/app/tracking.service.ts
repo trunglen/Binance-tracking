@@ -29,7 +29,7 @@ export class TrackingService {
 }
 
 
-export interface VolumeTracking {
+export class VolumeTracking {
     xcode: string;
     symbol: string;
     startTime: string;
@@ -39,6 +39,7 @@ export interface VolumeTracking {
     low: string;
     close: string;
     volume: string;
+    volumeNum: number;
     buyVolume: string;
     quoteVolume: string;
     quoteBuyVolume: string;
@@ -49,6 +50,12 @@ export interface VolumeTracking {
     createdAt: Date;
     updatedAt: Date;
     id: number;
+    /**
+     *
+     */
+    constructor() {
+        this.volumeNum = Number.parseFloat(this.volume)
+    }
 }
 
 export interface VolumeTrackingTransform {

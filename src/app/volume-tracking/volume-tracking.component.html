@@ -26,15 +26,23 @@
           <th>Time</th>
           <th>Symbols</th>
           <th>Price</th>
-          <th>Buy Volume</th>
-          <th>Volume</th>
-          <th>BTC Volume</th>
-          <th>BTC Buy Volume</th>
+          <th (click)="setOrder('volume')" [class.active]="order === 'volume'">
+            <span [hidden]="reverse">▼</span>
+            <span [hidden]="!reverse">▲</span>Volume</th>
+          <th (click)="setOrder('buyVolume')" [class.active]="order === 'buyVolume'">
+            <span [hidden]="reverse">▼</span>
+            <span [hidden]="!reverse">▲</span>Buy Volume</th>
+          <th (click)="setOrder('quoteVolume')" [class.active]="order === 'quoteVolume'">
+            <span [hidden]="reverse">▼</span>
+            <span [hidden]="!reverse">▲</span>BTC Volume</th>
+          <th (click)="setOrder('quoteBuyVolume')" [class.active]="order === 'quoteBuyVolume'">
+            <span [hidden]="reverse">▼</span>
+            <span [hidden]="!reverse">▲</span>BTC Buy Volume</th>
           <th>%</th>
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let s of volumeTrackings |volumeFilter:condition | paginate: { itemsPerPage: 10, currentPage: p } | orderBy: order">
+        <tr *ngFor="let s of volumeTrackings |volumeFilter:condition | paginate: { itemsPerPage: 10, currentPage: p }| orderBy: order : reverse:'case-insensitive':customComparator">
           <td>
             {{s.startTimeDisplay}}
             <br/>
@@ -42,8 +50,8 @@
             <br/> {{s.closeTimeDisplay}}
           </td>
           <td>
-           <a [routerLink]="['detail/'+s.symbol]">
-            {{s.symbol}} 
+            <a [routerLink]="['detail/'+s.symbol]">
+              {{s.symbol}}
             </a>
           </td>
           <td>
